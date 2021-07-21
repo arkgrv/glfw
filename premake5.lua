@@ -1,10 +1,10 @@
 project "GLFW"
 	kind "StaticLib"
 	language "C"
-	staticruntime "off"
+	staticruntime "on"
 
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+	targetdir 	("bin/" .. outputdir .. "/%{prj.name}")
+	objdir 		("obj/" .. outputdir .. "/%{prj.name}")
 
 	files
 	{
@@ -19,7 +19,7 @@ project "GLFW"
 		"src/window.c"
 	}
 	filter "system:linux"
-		pic "On"
+		pic "on"
 
 		systemversion "latest"
 		
@@ -65,9 +65,9 @@ project "GLFW"
 		}
 
 	filter "configurations:Debug"
-		runtime "Debug"
-		symbols "on"
+		runtime 	"Debug"
+		symbols 	"on"
 
 	filter "configurations:Release"
-		runtime "Release"
-		optimize "on"
+		runtime 	"Release"
+		optimize 	"on"
