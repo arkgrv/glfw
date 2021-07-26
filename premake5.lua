@@ -42,6 +42,49 @@ project "GLFW"
 			"_GLFW_X11"
 		}
 
+	filter "system:macosx"
+		
+		buildoptions
+		{
+			"-x objective-c"
+		}
+
+		defines
+		{
+			"_GLFW_COCOA"
+		}
+
+		links
+		{
+			"Metal.framework",
+			"OpenGL.framework",
+			"Cocoa.framework",
+			"CoreVideo.framework",
+			"IOKit.framework"
+		}
+
+		files
+		{
+			"src/cocoa_init.m",
+			"src/cocoa_monitor.m",
+			"src/cocoa_window.m",
+			"src/xkb_unicode.c",
+			"src/cocoa_time.c",
+			"src/cocoa_joystick.m",
+			"src/posix_thread.c",
+			"src/egl_context.c",
+			"src/osmesa_context.c",
+			"src/nsgl_context.m"
+		}
+
+		filter "configurations:Debug"
+        	runtime     "Debug"
+        	symbols     "on"
+
+	    filter "configurations:Release"
+    	    runtime     "Release"
+        	optimize    "on"
+
 	filter "system:windows"
 		systemversion "latest"
 
@@ -64,10 +107,10 @@ project "GLFW"
 			"_CRT_SECURE_NO_WARNINGS"
 		}
 
-	filter "configurations:Debug"
-		runtime 	"Debug"
-		symbols 	"on"
+		filter "configurations:Debug"
+			runtime 	"Debug"
+			symbols 	"on"
 
-	filter "configurations:Release"
-		runtime 	"Release"
-		optimize 	"on"
+		filter "configurations:Release"
+			runtime 	"Release"
+			optimize 	"on"
